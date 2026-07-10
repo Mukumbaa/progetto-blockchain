@@ -12,8 +12,16 @@
   Gabriele Lippolis - Fabio Ottico
 
 ]
-
 #v(3em)
+= Introduzione
+La blockchain di Ethereum ha subito un significativo sviluppo tecnico negli ultimi anni, risolvendo i limiti storici dell’EVM in termini di scalabilità, costi ed esperienza utente. Lo sviluppo degli smart contract su Ethereum, in passato, presentava alcuni vincoli intrinseci: una limitazione imposta dagli elevati costi di mantenimento dello stato della blockchain e una rigida distinzione tra account con controllo della chiave privata (EOA) e smart contract (SCA).
+Questo progetto mira a studiare e implementare le soluzioni più recenti progettate per superare tali carenze, concentrandosi sull’intersezione di tre concetti avanzati per lo sviluppo di Solidity e dell’EVM:
+- *Transient Storage*: un nuovo concetto di archiviazione introdotto nell’hard fork Dencun. Introduce una regione di memoria transitoria che viene conservata solo per la durata di una transazione, consentendo così un notevole risparmio sulle commissioni di gas ed evitando al contempo aggiornamenti permanenti del Merkle Trie.
+- *Inline Assembly (Yul)*: il linguaggio intermedio di basso livello che consente agli sviluppatori di superare l’astrazione dell’EVM, manipolare direttamente la memoria e ottimizzare il codice per operazioni complesse (come i contratti proxy o le chiamate generiche) che non sono facilmente realizzabili con Solidity standard.
+- *EIP-7702 e Account Abstraction*: un elemento chiave del futuro modello di transazione di Ethereum, previsto per l’hard fork Pectra. Consente a un EOA esistente di impersonare temporaneamente uno smart contract tramite una firma delegata (una “Set Code Transaction”, tipo 0x04), rendendo possibile un comportamento flessibile e programmabile dell’account.
+
+La validità, l’efficienza in termini di gas e la sicurezza dell’architettura proposta sono state valutate attraverso test con il framework Foundry.
+
 = Transient Storage
 
 Il transient Storage è un terzo spazio in cui vengono memorizzati i dati nell’EVM, a metà strada tra la memoria volatile e la memoria permanente. Il transient Storage è stato implementato tramite l’EIP-1153 ed è stato aggiunto alla mainnet con l’hard fork Dencun.
