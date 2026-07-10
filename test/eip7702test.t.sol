@@ -6,7 +6,7 @@ import "forge-std/Test.sol";
 // implementazione per contratto con delega
 contract SimpleDelegate {
     function execute() external pure returns (string memory) {
-        return "Delega fatta";
+        return "Delegated call successful!";
     }
 }
 
@@ -22,14 +22,14 @@ contract EIP7702Test is Test {
 
     function test_EIP7702_IsSupported() public {
         // Alice è un EOA senza codice
-        assertEq(ALICE.code.length, 0, "Alice dovrebbe iniziare senza codice");
+        assertEq(ALICE.code.length, 0, "ALICE should start with no code");
 
         // firma la delega
         Vm.SignedDelegation memory signedDelegation = vm.signDelegation(address(implementation), ALICE_PK);
         vm.attachDelegation(signedDelegation);
 
         // dopo la delega, Alice ha il codice
-        assertTrue(ALICE.code.length > 0, "EIP-7702 non attivo: nessun codice per Alice");
+        assertTrue(ALICE.code.length > 0, "EIP-7702 not active: code not set on ALICE");
     }
 
     function test_DelegatedCall() public {
