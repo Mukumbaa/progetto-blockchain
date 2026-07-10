@@ -149,7 +149,7 @@ Quando un altro contratto o una transazione interagisce con questo EOA, l’EVM 
 Per facilitare questo meccanismo di delega, l’EIP-7702 introduce un nuovo tipo di transazione standardizzato, identificato dal tipo 0x04, denominato Set Code Transaction.
 
 Il payload codificato RLP di una transazione di tipo 0x04 è strutturato come segue:
-#pagebreak()
+// #pagebreak()
 `
 rlp([
   chain_id,
